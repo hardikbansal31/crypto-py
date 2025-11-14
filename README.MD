@@ -197,30 +197,8 @@ You can easily add:
 * Redis/memory caching
 * additional MCP tools
 
----
-
-## 👤 **Author**
-
-Hardik Bansal
-(Mention only if you want — optional for the assignment.)
-
----
-
 ## 📬 **Submission**
 
 This project is developed for the internship coding assignment.
 Upload to GitHub and share the repository link by **Nov 16, 2025**.
 
----
-
-If you want, I can now generate:
-
-### ✔ professional tests
-
-### ✔ final polishing of handlers
-
-### ✔ docstrings + cleanup
-
-### ✔ GitHub-ready commit messages
-
-Just tell me **“B”** when you're ready for the full test suite.
