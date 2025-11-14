@@ -197,8 +197,4 @@ You can easily add:
 * Redis/memory caching
 * additional MCP tools
 
-## 📬 **Submission**
-
-This project is developed for the internship coding assignment.
-Upload to GitHub and share the repository link by **Nov 16, 2025**.
 
