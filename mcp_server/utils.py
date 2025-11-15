@@ -7,7 +7,6 @@ def normalize_exchange(exchange: str) -> str:
 
     ex = exchange.lower().strip()
 
-    # ccxt exchanges are usually lowercase
     if not ex.isalpha():
         raise InvalidExchangeError(f"Invalid exchange '{exchange}'")
 
@@ -20,7 +19,6 @@ def normalize_symbol(symbol: str) -> str:
 
     sym = symbol.upper().strip()
 
-    # basic validation expected in tests
     if "/" not in sym:
         raise InvalidSymbolError(f"Invalid symbol '{symbol}'. Expected format BASE/QUOTE like BTC/USDT")
 

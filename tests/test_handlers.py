@@ -4,9 +4,6 @@ from mcp_server.handlers import get_price, get_ohlcv
 from mcp_server.exceptions import InvalidExchangeError, InvalidSymbolError
 from unittest.mock import Mock
 
-
-# ----- PRICE TESTS -----
-
 @patch("mcp_server.handlers.ccxt")
 def test_get_price_success(mock_ccxt):
     mock_exchange = Mock()
@@ -21,21 +18,14 @@ def test_get_price_success(mock_ccxt):
     assert result["price"] == 30000
 
 
-# tests/test_handlers.py
-
 @patch("mcp_server.handlers.ccxt")
 def test_get_price_invalid_exchange(mock_ccxt):
-    # This one line correctly simulates a missing exchange
-    # for both checks inside the _load_exchange function.
     setattr(mock_ccxt, 'invalidex', None)
 
-    # REMOVE this line, it caused the AttributeError:
-    # mock_ccxt.__dict__.get.return_value = None
 
     from mcp_server.handlers import get_price
     with pytest.raises(InvalidExchangeError):
         get_price("invalidex", "BTC/USDT")
-
 
 
 @patch("mcp_server.handlers.ccxt")
@@ -48,8 +38,6 @@ def test_get_price_invalid_symbol(mock_ccxt):
     with pytest.raises(InvalidSymbolError):
         get_price("binance", "INVALID")
 
-
-# ----- OHLCV TESTS -----
 
 @patch("mcp_server.handlers.ccxt")
 def test_get_ohlcv_success(mock_ccxt):

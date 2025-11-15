@@ -27,25 +27,15 @@ def test_price_route_success(mock_ccxt):
     assert body["price"] == 35000
 
 
-# tests/test_server.py
-
-# tests/test_server.py
-
 @patch("mcp_server.handlers.ccxt")
 def test_price_route_invalid_exchange(mock_ccxt):
-    # This one line correctly simulates a missing exchange
     setattr(mock_ccxt, 'invalidex', None)
     
-    # REMOVE this line, it caused the AttributeError:
-    # mock_ccxt.__dict__.get.return_value = None
 
     response = client.get("/price?exchange=invalidex&symbol=BTC/USDT")
 
     assert response.status_code == 400
     assert response.json()["detail"] == "Invalid exchange"
-
-
-
 
 @patch("mcp_server.handlers.ccxt")
 def test_ohlcv_route_success(mock_ccxt):
