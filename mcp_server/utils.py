@@ -1,13 +1,27 @@
-from .exceptions import InvalidParameter
-
-
-def normalize_symbol(symbol: str) -> str:
-    if not symbol or "/" not in symbol:
-        raise InvalidParameter("symbol must be in the form BTC/USDT")
-    return symbol.strip().upper()
+from .exceptions import InvalidExchangeError, InvalidSymbolError
 
 
 def normalize_exchange(exchange: str) -> str:
     if not exchange:
-        raise InvalidParameter("exchange is required")
-    return exchange.strip().lower()
+        raise InvalidExchangeError("Exchange cannot be empty")
+
+    ex = exchange.lower().strip()
+
+    # ccxt exchanges are usually lowercase
+    if not ex.isalpha():
+        raise InvalidExchangeError(f"Invalid exchange '{exchange}'")
+
+    return ex
+
+
+def normalize_symbol(symbol: str) -> str:
+    if not symbol:
+        raise InvalidSymbolError("Symbol cannot be empty")
+
+    sym = symbol.upper().strip()
+
+    # basic validation expected in tests
+    if "/" not in sym:
+        raise InvalidSymbolError(f"Invalid symbol '{symbol}'. Expected format BASE/QUOTE like BTC/USDT")
+
+    return sym

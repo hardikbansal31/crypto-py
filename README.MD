@@ -196,5 +196,3 @@ You can easily add:
 * rate limiting
 * Redis/memory caching
 * additional MCP tools
-
-
